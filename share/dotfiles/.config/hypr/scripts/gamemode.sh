@@ -8,8 +8,8 @@
 #
 
 if [ -f ~/.cache/gamemode ] ;then
-    hyprctl reload
     rm ~/.cache/gamemode
+    hyprctl reload
     notify-send "Gamemode deactivated" "Animations and blur enabled"
 else
     hyprctl --batch "\

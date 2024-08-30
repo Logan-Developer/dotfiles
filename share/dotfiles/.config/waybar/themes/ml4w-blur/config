@@ -37,22 +37,17 @@
 
     // Modules Center
     "modules-center": [
+        "clock",
         "hyprland/workspaces"
     ],
 
     // Modules Right    
     "modules-right": [
         "custom/updates",
-        "pulseaudio",
-        "backlight",
-        "bluetooth",
-        "battery", 
-        "network",
+        "group/utils",
+        "tray",
         "group/hardware",
         "group/tools",
-        "tray",
-        "custom/exit",
-        "custom/ml4w-welcome",
-        "clock"
+        "custom/exit"
     ]
 }

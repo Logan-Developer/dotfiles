@@ -20,7 +20,7 @@
       "default": ""
     },
     "persistent-workspaces": {
-      "*": 5
+            "*": [1, 2, 3, 4]
     }
   },
 
@@ -44,11 +44,7 @@
   // Hyprland Window
   "hyprland/window": {
     "rewrite": {
-      "(.*) - Brave": "$1",
-      "(.*) - Chromium": "$1",
-      "(.*) - Brave Search": "$1",
-      "(.*) - Outlook": "$1",
-      "(.*) Microsoft Teams": "$1"
+      "(.*) - Google Chrome": "$1"
     },
     "separate-outputs": true
   },
@@ -79,6 +75,13 @@
     "on-click-right": "sleep 0.1 && ~/.config/ml4w/scripts/cliphist.sh d",
     "on-click-middle": "sleep 0.1 && ~/.config/ml4w/scripts/cliphist.sh w",
     "tooltip-format": "Clipboard Manager"
+  },
+
+  // Game Mode
+  "custom/gamemode": {
+      "format": "🎮️",
+      "on-click": "~/.config/hypr/scripts/gamemode.sh",
+      "tooltip-format": "Toggle Game Mode"
   },
 
   // Updates Count
@@ -122,24 +125,10 @@
   },
 
   // ChatGPT Launcher
-  "custom/chatgpt": {
+  "custom/gemini": {
     "format": " ",
     "on-click": "~/.config/ml4w/settings/ai.sh",
     "tooltip-format": "AI Support"
-  },
-
-  // Calculator
-  "custom/calculator": {
-    "format": "",
-    "on-click": "qalculate-gtk",
-    "tooltip-format": "Open calculator"
-  },
-
-  // Windows VM
-  "custom/windowsvm": {
-    "format": "",
-    "on-click": "~/.config/ml4w/scripts/launchvm.sh",
-    "tooltip": false
   },
 
   // Rofi Application Launcher
@@ -206,7 +195,7 @@
 
   // Clock
   "clock": {
-    "format": "{:%H:%M %a}",
+        "format": "{:%I:%M %p - %a %b %d}",
     // "timezone": "America/New_York",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     // START CLOCK FORMAT
@@ -252,7 +241,7 @@
       "children-class": "not-memory",
       "transition-left-to-right": false
     },
-    "modules": ["custom/system", "disk", "cpu", "memory", "hyprland/language"]
+    "modules": ["custom/system", "disk", "cpu", "memory"]
   },
 
   // Group Tools
@@ -265,6 +254,7 @@
     },
     "modules": [
       "custom/tools",
+      "custom/gamemode",
       "custom/cliphist",
       "custom/hypridle",
       "custom/hyprshade"
@@ -275,7 +265,7 @@
   "group/links": {
     "orientation": "horizontal",
     "modules": [
-      "custom/chatgpt",
+      "custom/gemini",
       "custom/empty"      
     ]
   },
@@ -295,7 +285,19 @@
     ]
   },
 
-  // Network
+  // Group Utils
+  "group/utils": {
+      "orientation": "inherit",
+      "modules": [
+          "pulseaudio",
+          "backlight",
+          "battery",
+          "bluetooth",
+          "network"
+      ]
+  },
+
+  // Network11
   "network": {
     "format": "{ifname}",
     "format-wifi": "   {signalStrength}%",
@@ -320,7 +322,7 @@
     "format": "{icon} {capacity}%",
     "format-charging": "  {capacity}%",
     "format-plugged": "  {capacity}%",
-    "format-alt": "{icon}  {time}",
+    //"format-alt": "{icon}  {time}",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
     "format-icons": [" ", " ", " ", " ", " "]
@@ -350,8 +352,8 @@
   // Bluetooth
   "bluetooth": {
     "format": " {status}",
-    "format-disabled": "",
-    "format-off": "",
+    "format-disabled": " off",
+    "format-connected-battery": " {device_battery_percentage}%",
     "interval": 30,
     "on-click": "blueman-manager",
     "format-no-controller": ""
